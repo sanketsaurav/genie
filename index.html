@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="Genie">
   <head>
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Genie - Bulk reply Facebook birthday wishes!">
@@ -9,7 +8,7 @@
 
     <title>Genie - Bulk reply Facebook birthday wishes!</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
 
@@ -28,16 +27,39 @@
   </head>
 
   <body>
-    <h1>Genie is coming soon! Hang tight in there, you. ;)</h1>
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '309019272576647', // App ID
+          channelUrl : '//test.campushash.com/channel.html', // Channel File
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+      };
 
-    <!-- JS and analytics only. -->
-    <!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="js/bootstrap.min.js"></script>
+      // Loading  the SDK asynchronously
+      (function(d){
+         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement('script'); js.id = id; js.async = true;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         ref.parentNode.insertBefore(js, ref);
+      }(document));
+    </script>
 
-<!-- Analytics
-================================================== -->
-  <!--TO DO -->
+    <div class="container" id="main_container">
+      <h1>Genie - Bulk Facebook Wish Reply</h1>
+      <div ng-controller="LoginController">
+        <button class="btn btn-lg btn-primary" ng-click="genieConnect();">Connect with Facebook</button>
+      </div>
+    </div>
+
+    <!-- More JS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Analytics -->
   </body>
 </html>
