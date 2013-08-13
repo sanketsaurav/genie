@@ -8,26 +8,19 @@ function AuthorController($scope) {
 
 function LoginController($scope) {
 
-	/*$scope.genieInit = function() {
-		// Initialize Genie
-		if (g.connected!=true) {
-			genieConnect();
-		}
-	}*/
-
 	$scope.genieConnect = function () {
 		if (g.connected != true) {
 			fbLogin();
-			if (g.status === 'connected') {
-				g.connected = true;
-			}
 		}
 	}
 
 	fbLogin = function () {
 		FB.login(function(response) {
-			g.authResponse = response.authResponse;
+			g.auth = response.authResponse;
 			g.status = response.status;
+			if (g.status === 'connected') {
+				g.connected = true;
+			}
 		}, {scope: 'read_stream,publish_actions,publish_stream'});
 	}
 }
